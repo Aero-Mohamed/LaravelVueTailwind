@@ -11,6 +11,9 @@
 |
 */
 
+/**
+ * handle requests , need this to run VueRouter history mode
+ */
 Route::get('/{vue?}', function(){
     return view('welcome');
 })->where('vue', '[\/\w\.-]*');

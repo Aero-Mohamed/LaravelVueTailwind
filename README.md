@@ -1,7 +1,13 @@
 
 ## Laravel VueJs Tailwind
 
-Installation:
+### Technology
+- Laravel 6
+- VueJs, VueRouter, Vuex
+- TailWindCss
+
+
+#### Installation:
 - run `composer update`
 - run `npm install`
 - run `npm run watch`
