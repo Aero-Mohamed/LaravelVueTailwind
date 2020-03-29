@@ -38006,7 +38006,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mt-10 p-3 w-50 mx-auto" }, [
+  return _c("div", { staticClass: "mt-10 p-3 w-50 mx-auto bg-blue-300" }, [
     _c("h1", [_vm._v("Welcome, dear")]),
     _vm._v(" "),
     _c("hr"),

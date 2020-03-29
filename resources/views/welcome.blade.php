@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="{{asset('assets/css/night-mode.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/framework.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
-
+    {{-- Import TailwindCss   --}}
+{{--    <link rel="stylesheet" href="{{asset('css/app.css')}}">--}}
+{{--    <link rel="stylesheet" href="{{asset('css/main.css')}}">--}}
     <!-- icons
     ================================================== -->
     <link rel="stylesheet" href="{{asset('assets/css/icons.css')}}">

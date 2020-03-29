@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-10 p-3 w-50 mx-auto">
+    <div class="mt-10 p-3 w-50 mx-auto bg-blue-300">
         <h1>Welcome, dear</h1>
         <hr>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi, aspernatur assumenda, at beatae corporis enim iusto laborum molestias neque nesciunt similique unde voluptates? Assumenda distinctio harum minus modi voluptate?</p>
