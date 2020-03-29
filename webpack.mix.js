@@ -10,9 +10,12 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
+mix.options({
+    processCssUrls: false
+});
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/main.css', 'public/css', [
     require('tailwindcss'),
     ])
-    .browserSync('localhost/LaravelVueTailwind/public');
+
+    .browserSync('127.0.0.1:8000');

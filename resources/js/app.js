@@ -19,7 +19,22 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+import VueRouter from 'vue-router';
+import {routes} from './routes';
+
+import UserLayout from './components/Layouts/UserLayout/Layout';
+
+window.Vue.use(VueRouter);
+
+
+const router = new VueRouter({
+    mode: 'history',
+    base: '/',
+    linkActiveClass: 'active',
+    routes: routes,
+
+});
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,5 +44,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
-
+    components: {
+        UserLayout,
+    },
+    router: router
 });
