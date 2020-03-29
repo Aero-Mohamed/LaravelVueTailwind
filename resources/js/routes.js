@@ -2,7 +2,7 @@
 import Welcome from './components/General/Welcome';
 import UserLogin from './components/Auth/Login';
 import UserRegister from './components/Auth/Register';
-import UserLayout from './components/Layouts/UserLayout/Layout';
+import UserProfile from './components/User/Profile';
 
 
 
@@ -25,7 +25,7 @@ export const routes = [
     {
         path: '/home',
         name: 'home',
-        component: UserLayout
+        component: UserProfile
     },
 
     // bad required ..

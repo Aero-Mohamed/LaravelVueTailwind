@@ -14,8 +14,8 @@
                         <img src="assets/images/avatars/home-profile.jpg" alt="">
                     </div>
 
-                    <h4 class="mb-2 mt-3"> Elie Daniels </h4>
-                    <p class="m-0"> Member since Sep 23 2017 </p>
+                    <h4 class="mb-2 mt-3">{{user.name}}</h4>
+                    <p class="m-0"> Member since {{user.created_at}} </p>
 
                 </div>
 
@@ -31,20 +31,20 @@
                     <hr class="m-0">
                     <div class="uk-child-width-1-2@s uk-grid-small p-4" uk-grid>
                         <div>
-                            <h6 class="uk-text-bold"> First Name </h6>
-                                <p> Elie </p>
+                            <h6 class="uk-text-bold"> Name </h6>
+                                <p> {{user.name}} </p>
                         </div>
                         <div>
-                            <h6 class="uk-text-bold"> Seccond Name </h6>
-                                <p> Elie </p>
+                            <h6 class="uk-text-bold"> Age </h6>
+                                <p> {{user.age}} </p>
                         </div>
                         <div>
                             <h6 class="uk-text-bold"> Your email address </h6>
-                                <p> eliedaniels@gmail.com </p>
+                                <p> {{user.email}} </p>
                         </div>
                         <div>
                             <h6 class="uk-text-bold"> Phone </h6>
-                                <p> +1 555 623 568 </p>
+                                <p>{{user.phone}} </p>
                         </div>
 
                     </div>
@@ -58,13 +58,27 @@
 
 <script>
 
-    import UserFooter from '../Layouts/UserLayout/Footer';
-
     export default {
         name: 'UserProfile',
-        components: {
-            UserFooter,
-
+        data(){
+            return {
+                user: {
+                    name: '',
+                    email: '',
+                    phone: '',
+                    created_at: '',
+                    age: ''
+                },
+            }
+        },
+        created(){
+            this.setUserData();
+        },
+        methods: {
+            setUserData(){
+                this.user = this.$store.getters.getUser;
+            },
         }
+
     }
 </script>
