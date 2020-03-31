@@ -28,6 +28,7 @@ import UserLayout from './components/Layouts/UserLayout/Layout';
 
 // use VueRouter & Vuex
 Vue.use(VueRouter);
+axios.defaults.baseURL = 'http://localhost/LaravelVueTailwind/public/api';
 
 
 /**
@@ -41,6 +42,32 @@ const router = new VueRouter({
     routes: routes,
 
 });
+/**
+ * Route Guards ..
+ * [requiresVisitor, requiresAuth ]
+ */
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!store.getters.isLoggedIn) {
+            next({
+                name: 'login'
+            })
+        }else{
+            next();
+        }
+    }  else if(to.matched.some(record => record.meta.requiresVisitor)) {
+        if(store.getters.isLoggedIn){
+            next({
+                name: 'welcome',
+            })
+        }else{
+            next();
+        }
+    }else{
+        next();
+    }
+})
 
 
 const app = new Vue({

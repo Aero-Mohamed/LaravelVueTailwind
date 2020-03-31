@@ -7,6 +7,8 @@
 - **TailWindCss**
 - Laravel **Passport** for Auth 
 - **GuzzleHttp**
+- **fruitcake/laravel-cors**
+
 
 #### Installation:
 - `composer install`
@@ -15,8 +17,13 @@
 
         provide the client_id and client_secret given to .env variables as following:
         
-        PASSPORT_CLIENT_ID=2
-        PASSPORT_CLIENT_SECRET=p1BHOW76MGTGIprP0mD5d7INT8hSLEqSKUH5zYJr
+        PASSPORT_CLIENT_ID={client-id}
+        PASSPORT_CLIENT_SECRET={client-secret}
+
+- Go to `./resourses/js/app.js`
+
+        axios.defaults.baseURL = 'http://localhost/LaravelVueTailwind/public/api';
+        updatet that line with your server api link,  
 
 - `npm install`
 - `npm run watch`

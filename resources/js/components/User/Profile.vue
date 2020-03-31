@@ -25,7 +25,7 @@
                 <div class="uk-card-default rounded">
                     <div class="uk-flex uk-flex-between uk-flex-middle py-3 px-4">
                         <h5 class="mb-0"> Account details </h5>
-                            <a href="#" uk-tooltip="title:Edit Account; pos: left"> <i
+                            <a @click="Logout" uk-tooltip="title:Logout; pos: left"> <i
                                 class="icon-feather-settings"></i> </a>
                     </div>
                     <hr class="m-0">
@@ -36,7 +36,7 @@
                         </div>
                         <div>
                             <h6 class="uk-text-bold"> Age </h6>
-                                <p> {{user.age}} </p>
+                                <p> </p>
                         </div>
                         <div>
                             <h6 class="uk-text-bold"> Your email address </h6>
@@ -44,7 +44,7 @@
                         </div>
                         <div>
                             <h6 class="uk-text-bold"> Phone </h6>
-                                <p>{{user.phone}} </p>
+                                <p></p>
                         </div>
 
                     </div>
@@ -65,19 +65,20 @@
                 user: {
                     name: '',
                     email: '',
-                    phone: '',
-                    created_at: '',
-                    age: ''
                 },
             }
         },
         created(){
-            this.setUserData();
+            this.user = this.$store.getters.getUser;
         },
         methods: {
-            setUserData(){
-                this.user = this.$store.getters.getUser;
-            },
+            Logout(){
+                this.$store.dispatch('Logout')
+                    .then(response => {
+                        this.$router.push({name: 'login'});
+                    })
+                    .catch(error => console.log(error));
+            }
         }
 
     }

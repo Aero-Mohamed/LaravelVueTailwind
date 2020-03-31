@@ -6,7 +6,7 @@
                     <h3 class="mb-0"> Welcome back</h3>
                     <p class="my-2">Login to manage your account.</p>
                 </div>
-                <form>
+                <form @submit.prevent="login">
 
                     <div class="uk-form-group">
                         <label class="uk-form-label"> Email</label>
@@ -15,7 +15,7 @@
                             <span class="uk-form-icon">
                                 <i class="icon-feather-mail"></i>
                             </span>
-                            <input class="uk-input" type="email" placeholder="name@example.com">
+                            <input class="uk-input" type="email" v-model="email" placeholder="name@example.com">
                         </div>
 
                     </div>
@@ -27,19 +27,7 @@
                             <span class="uk-form-icon">
                                 <i class="icon-feather-lock"></i>
                             </span>
-                            <input class="uk-input" type="password" placeholder="********">
-                        </div>
-
-                    </div>
-
-                    <div class="uk-form-group">
-                        <label class="uk-form-label"> Confirm password</label>
-
-                        <div class="uk-position-relative w-100">
-                            <span class="uk-form-icon">
-                                <i class="icon-feather-lock"></i>
-                            </span>
-                            <input class="uk-input" type="password" placeholder="********">
+                            <input class="uk-input" type="password" v-model="password" placeholder="********">
                         </div>
 
                     </div>
@@ -62,5 +50,25 @@
 <script>
     export default {
         name: 'UserLogin',
+        data(){
+            return {
+                email: '',
+                password: '',
+            }
+        },
+        created(){
+
+        },
+        methods: {
+            login(){
+                this.$store.dispatch('retrieveToken', {
+                    email: this.email,
+                    password: this.password
+                })
+                .then(res => {
+                    this.$router.push({name: 'home'});
+                });
+            }
+        }
     }
 </script>

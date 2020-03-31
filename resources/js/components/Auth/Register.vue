@@ -6,7 +6,7 @@
                     <h3 class="mb-0"> Create new Account</h3>
                     <p class="my-2">Login to manage your account.</p>
                 </div>
-                <form class="uk-child-width-1-1 uk-grid-small" uk-grid>
+                <form class="uk-child-width-1-1 uk-grid-small" uk-grid @submit.prevent="register">
 
                     <div>
                         <div class="uk-form-group">
@@ -16,7 +16,7 @@
                                 <span class="uk-form-icon">
                                     <i class="icon-feather-user"></i>
                                 </span>
-                                <input class="uk-input" type="text" placeholder="Full name">
+                                <input class="uk-input" type="text" v-model="name" placeholder="Full name">
                             </div>
 
                         </div>
@@ -29,7 +29,7 @@
                                 <span class="uk-form-icon">
                                     <i class="icon-feather-mail"></i>
                                 </span>
-                                <input class="uk-input" type="email" placeholder="name@example.com">
+                                <input class="uk-input" type="email" v-model="email" placeholder="name@example.com">
                             </div>
 
                         </div>
@@ -43,7 +43,7 @@
                                 <span class="uk-form-icon">
                                     <i class="icon-feather-lock"></i>
                                 </span>
-                                <input class="uk-input" type="password" placeholder="********">
+                                <input class="uk-input" type="password" v-model="password" placeholder="********">
                             </div>
 
                         </div>
@@ -56,7 +56,7 @@
                                 <span class="uk-form-icon">
                                     <i class="icon-feather-lock"></i>
                                 </span>
-                                <input class="uk-input" type="password" placeholder="********">
+                                <input class="uk-input" type="password" v-model="password_confirmation" placeholder="********">
                             </div>
 
                         </div>
@@ -83,6 +83,54 @@
 <script>
     export default {
         name: 'Register',
-        template: '<Register/>'
+        data(){
+            return {
+                name: '',
+                email: '',
+                password: '',
+                password_confirmation: '',
+            }
+        },
+        methods: {
+            register(){
+                this.$store.dispatch('registerNewUser', {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                    password_confirmation: this.password_confirmation
+                }).then(res=> {
+                    if(res.status == 201){
+                        this.$router.push({name: 'login'});
+                    }else{
+                        UIkit.notification({
+                            message: 'something bad happend !',
+                            status: 'danger',
+                            pos: 'top-right',
+                            timeout: 5000
+                        });
+                    }
+                }).catch(error => {
+                    if(error.response.status == 422){
+                        var msg = 'something bad happend !';
+                        if(error.response.data.errors.hasOwnProperty('password')){
+                            var msg = error.response.data.errors.password[0];
+                        }
+                        if(error.response.data.errors.hasOwnProperty('email')){
+                            var msg = error.response.data.errors.email[0];
+                        }
+                        if(error.response.data.errors.hasOwnProperty('name') > 0){
+                            var msg = error.response.data.errors.name[0];
+                        }
+
+                        UIkit.notification({
+                            message: msg,
+                            status: 'danger',
+                            pos: 'top-right',
+                            timeout: 5000
+                        });
+                    }
+                });
+            }
+        }
     }
 </script>

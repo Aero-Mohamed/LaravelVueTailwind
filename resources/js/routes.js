@@ -15,17 +15,26 @@ export const routes = [
     {
         path: '/login',
         name: 'login',
-        component: UserLogin
+        component: UserLogin,
+        meta: {
+            requiresVisitor: true,
+        }
     },
     {
         path: '/register',
         name: 'register',
-        component: UserRegister
+        component: UserRegister,
+        meta: {
+            requiresVisitor: true,
+        }
     },
     {
         path: '/home',
         name: 'home',
-        component: UserProfile
+        component: UserProfile,
+        meta: {
+            requiresAuth: true,
+        }
     },
 
     // bad required ..
@@ -34,3 +43,5 @@ export const routes = [
         redirect: { name: 'welcome' }
     }
 ];
+
+
